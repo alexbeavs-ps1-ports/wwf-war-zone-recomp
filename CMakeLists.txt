@@ -19,6 +19,8 @@ set(PSX_RECOMP_UI ON CACHE BOOL "Use recomp-ui" FORCE)
 set(PSX_NETPLAY OFF CACHE BOOL "Netplay is not qualified" FORCE)
 set(PSX_SETUP_WIZARD ON CACHE BOOL "Enable owned-input setup" FORCE)
 set(PSXRECOMP_BIOS_STEMS "SCPH1001" CACHE STRING "Bound retail BIOS" FORCE)
+set(PSXRECOMP_BIOS_STEM "SCPH1001" CACHE STRING "Accepted BIOS" FORCE)
+set(PSXRECOMP_BIOS_PROFILE "${PSXRECOMP_ROOT}/bios/SCPH1001.toml" CACHE FILEPATH "Accepted BIOS" FORCE)
 include("${PSXRECOMP_ROOT}/runtime/runtime.cmake")
 
 # This project's own mod catalog. The FRAMEWORK stages it -- together with its

@@ -3,6 +3,10 @@
 Private source preparation; no build or gameplay qualification.
 Status, setup instructions and evidence: [T91](https://app.notion.com/p/3de1cf959a4c81d1bb38e5342763307e).
 
+<!-- release-standard:bios -->
+**BIOS:** SCPH-1001 (USA) retail BIOS, 524288 bytes, SHA-256 `71af94d1e47a68c11e8fdb9f8368040601514a42a5a399cda48c7d3bff1e99d3`. Supply your own dump; releases do not use OpenBIOS.
+<!-- /release-standard:bios -->
+
 ## About this project
 
 These ports are developed by a hobbyist (a DevSecOps engineer, not a game
