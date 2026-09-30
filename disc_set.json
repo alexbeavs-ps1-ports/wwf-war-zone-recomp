@@ -1,0 +1,18 @@
+{
+  "disc_count": 1,
+  "verdict": "single",
+  "differing_program_fields": [],
+  "warnings": [],
+  "discs": [
+    {
+      "index": 1,
+      "cue_name": "WWF War Zone (USA) (Rev 1).cue",
+      "cue_path": "disc/WWF War Zone (USA) (Rev 1).cue",
+      "serial": "SLUS-00495",
+      "boot_exe": "SLUS_004.95",
+      "entry_pc": "0x800441B8",
+      "track_count": 2,
+      "required_disc_fp": "9107aa6df8e1be836110a16480dd14baba5d8a91c2d7a407c7c8d7deedd61d96"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "cue_path": "disc/WWF War Zone (USA) (Rev 1).cue",
+  "cue_name": "WWF War Zone (USA) (Rev 1).cue",
+  "bin_name": "WWF War Zone (USA) (Rev 1) (Track 1).bin",
+  "track_count": 2,
+  "data_track_size": 655514160,
+  "data_track_md5": "079eb92dc140978722335d7209e2506a",
+  "data_track_sha1": "f22bb78d8cc6e2313852764b55fd0c195e6220ce",
+  "data_track_crc32": "c8d3cba1",
+  "boot_exe": "SLUS_004.95",
+  "serial": "SLUS-00495",
+  "serial_exe": "SLUS_004.95",
+  "volume_id": "WWF_WAR_ZONE",
+  "display_name": "WWF War Zone",
+  "load_address": "0x80010000",
+  "entry_pc": "0x800441B8",
+  "text_size": "0x000B5000",
+  "stack_base": "0x801FFFF0",
+  "require_cue": true,
+  "required_disc_fp": "9107aa6df8e1be836110a16480dd14baba5d8a91c2d7a407c7c8d7deedd61d96",
+  "boot_exe_sha256": "7cc42f330f59e2a91669156b7a653293e8ea6d7ba8caf1f07517a8e9c9c40ea7",
+  "seed_count": 913,
+  "warnings": [],
+  "notes": [
+    "entry_pc/load_address/text_size/stack_base taken from PS-X EXE header.",
+    "seeds are first-pass boot-EXE JAL targets (+ entry); expect to grow as overlays / runtime paths are discovered.",
+    "required_disc_fp is psxrecomp-toc-v1 (matches runtime DiscIdentity)."
+  ]
+}

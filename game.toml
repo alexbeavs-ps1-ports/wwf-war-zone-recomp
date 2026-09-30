@@ -1,0 +1,55 @@
+
+[game]
+name = "WWF War Zone"
+id = "SLUS-00495"
+players = 1
+exe = "disc/SLUS_004.95"
+disc = "disc/WWF War Zone (USA) (Rev 1).cue"
+load_address = "0x80010000"
+entry_pc = "0x800441B8"
+text_size = "0x000B5000"
+stack_base = "0x801FFFF0"
+
+[prepare_disc]
+out_dir = "disc"
+bin_name = "WWF War Zone (USA) (Rev 1) (Track 1).bin"
+cue_name = "WWF War Zone (USA) (Rev 1).cue"
+boot_exe = "SLUS_004.95"
+known_sizes = [655514160]
+known_md5 = [
+  "079eb92dc140978722335d7209e2506a",
+]
+known_sha1 = [
+  "f22bb78d8cc6e2313852764b55fd0c195e6220ce",
+]
+known_crc32 = [
+  "c8d3cba1",
+]
+
+[recompiler]
+bios_config = "psxrecomp/bios/SCPH1001.toml"
+seeds = "seeds/ghidra_funcs.txt"
+out_dir = "generated"
+strict = true
+
+[runtime]
+openbios = false
+bios_hle = false
+window_title = "WWF War Zone Recompiled"
+memcard_dir = "saves"
+overlay_cache = true
+
+[video]
+renderer = "opengl"
+aspect_ratio = "4:3"
+
+[controller]
+default_mode = "digital"
+
+[netplay]
+require_cue = true
+required_tracks = 2
+required_disc_fp = "9107aa6df8e1be836110a16480dd14baba5d8a91c2d7a407c7c8d7deedd61d96"
+
+[pgo]
+enabled = false
