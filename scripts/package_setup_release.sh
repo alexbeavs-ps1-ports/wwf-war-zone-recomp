@@ -72,6 +72,11 @@ for _sym in psx_symbols.h psx_symbols_overlays.h; do
   fi
 done
 
+if [[ -d "${ROOT}/launcher_assets" ]] &&
+   find "${ROOT}/launcher_assets" -type f -print -quit | grep -q .; then
+  EXTRA_PROJECT+=(--project-dir launcher_assets)
+fi
+
 cd "${ROOT}"
 exec bash "${PACKAGER}" \
   --root "${ROOT}" \
@@ -94,5 +99,4 @@ exec bash "${PACKAGER}" \
   --project-file codegen_setup.h \
   --project-file README.md \
   --project-dir seeds \
-  --project-dir launcher_assets \
   "${EXTRA_PROJECT[@]}"

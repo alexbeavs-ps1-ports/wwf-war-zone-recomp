@@ -117,7 +117,7 @@ ls -la dist/
 
 step "Verify zip ships the mod catalog"
 ZIP="$(ls dist/*-"${ARTIFACT}".zip | head -1)"  # title prefix comes from scripts/package_setup_release.sh
-MANIFESTS="$(unzip -l "${ZIP}" | grep -c 'mods/packages/.*/manifest\.toml' || true)"
+MANIFESTS="$(unzip -l "${ZIP}" | grep -Ec 'mods/(packages|bundled)/.*/manifest\.toml' || true)"
 echo "mod manifests in ${ZIP}: ${MANIFESTS}"
 [[ "${MANIFESTS}" -ge 1 ]] || { echo "ERROR: release zip ships no mod catalog"; exit 1; }
 if unzip -l "${ZIP}" | grep -q 'state\.toml'; then echo "ERROR: zip contains mods/state.toml"; exit 1; fi
