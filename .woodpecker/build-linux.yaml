@@ -1,0 +1,38 @@
+# Linux setup-host build on the athena agent (G72, PLAT-45). Port of the linux-x64 leg
+# of .github/workflows/release.yml. Manual runs only; RELEASE_VERSION comes from the run's
+# variables (default 0.0.0-ci). Builds only: publishing to Gitea releases comes later.
+# Manual runs; set BUILD_OS=linux or BUILD_OS=windows to run one leg (empty runs both).
+when:
+  - event: manual
+    evaluate: 'BUILD_OS == "" || BUILD_OS == "linux"'
+
+labels:
+  platform: linux/amd64
+  class: heavy
+
+clone:
+  git:
+    image: docker.io/woodpeckerci/plugin-git:2.10.1
+    settings:
+      recursive: true
+      # The pinned psxrecomp commit sits on a side branch: submodules need full history.
+      partial: false
+      depth: 0
+
+steps:
+  build:
+    image: docker.io/library/ubuntu:24.04
+    environment:
+      DEBIAN_FRONTEND: noninteractive
+      # athena: 14 GB RAM; keep clang parallelism low (PLAT-45). Raise with measured RSS.
+      BUILD_JOBS: "6"
+    commands:
+      - apt-get update -qq
+      - >-
+        apt-get install -y --no-install-recommends
+        build-essential cmake ninja-build pkg-config git curl ca-certificates unzip zip python3
+        libsdl2-dev libgl1-mesa-dev libxtst-dev libx11-dev libxext-dev libxrandr-dev
+        libxcursor-dev libxfixes-dev libxi-dev libxss-dev libxkbcommon-dev
+        libasound2-dev libpulse-dev libudev-dev libvulkan-dev glslc
+      - git config --global --add safe.directory '*'
+      - bash scripts/ci/woodpecker_build.sh linux-x64

@@ -1,0 +1,31 @@
+# Windows setup-host build on the Pegasus agent (G72, PLAT-45). Port of the windows-x64
+# leg of .github/workflows/release.yml. Local backend: steps run as the non-admin
+# woodpecker-agent user, in the agent's own MSYS2 (C:\ProgramData\Woodpecker\msys64,
+# MINGW64), never Alex's C:\msys64. Manual runs only; builds only, no publishing yet.
+# Manual runs; set BUILD_OS=linux or BUILD_OS=windows to run one leg (empty runs both).
+when:
+  - event: manual
+    evaluate: 'BUILD_OS == "" || BUILD_OS == "windows"'
+
+labels:
+  platform: windows/amd64
+  class: heavy
+
+clone:
+  git:
+    # Full trusted name: Woodpecker gives clone credentials only to trusted clone images.
+    # The local backend runs plugin-git.exe from PATH for this step.
+    image: docker.io/woodpeckerci/plugin-git:2.10.1
+    settings:
+      recursive: true
+      partial: false
+      depth: 0
+
+steps:
+  build:
+    image: powershell.exe
+    commands:
+      - $env:MSYSTEM = "MINGW64"; $env:CHERE_INVOKING = "1"; $env:MSYS2_PATH_TYPE = "minimal"
+      - $env:HOME = "C:\ProgramData\Woodpecker\msys64\home\woodpecker-agent"
+      - '& C:\ProgramData\Woodpecker\msys64\usr\bin\bash.exe -lc "git config --global --add safe.directory ''*''; bash scripts/ci/woodpecker_build.sh windows-x64"'
+      - if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

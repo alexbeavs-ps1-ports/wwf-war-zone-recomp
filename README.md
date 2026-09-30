@@ -18,3 +18,7 @@ writes most of the code; the evidence discipline decides what survives.
 Bug reports welcome - expect them to be investigated the same way.
 
 tl;dr AI writes the code, but I always test it myself before pushing
+
+<!-- framework-pin -->
+**Framework:** `psxrecomp` and `recomp-ui` are submodules pinned to test pin F (psxrecomp `a3e5fd892`, recomp-ui `8cf5b08`). Re-point both to pin G at release (PS1B-275). CI: Woodpecker, manual runs (`.woodpecker/`).
+<!-- /framework-pin -->

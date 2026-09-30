@@ -84,5 +84,3 @@ starvation_dump.jsonl
 
 !/disc_set.json
 /.local-context/
-/psxrecomp/
-/recomp-ui/
