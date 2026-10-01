@@ -2,7 +2,7 @@
 [game]
 name = "WWF War Zone"
 id = "SLUS-00495"
-players = 1
+players = 2
 exe = "disc/SLUS_004.95"
 disc = "disc/WWF War Zone (USA) (Rev 1).cue"
 discs = ["disc/WWF War Zone (USA) (Rev 1).cue"]
