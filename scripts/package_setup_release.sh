@@ -42,6 +42,14 @@ fi
 if [[ -f "${ROOT}/game_options.toml" ]]; then
   EXTRA_PROJECT+=(--project-file game_options.toml)
 fi
+# Licence and attribution must ship with a public kit. Guarded so the wrapper
+# still runs locally while those files are being prepared; release_package_gate
+# and the public payload audit reject a kit that omits them.
+for _legal in LICENSE THIRD_PARTY_NOTICES.md; do
+  if [[ -f "${ROOT}/${_legal}" ]]; then
+    EXTRA_PROJECT+=(--project-file "${_legal}")
+  fi
+done
 # Game-owned C that CMakeLists.txt compiles into the runtime — mod activation
 # plugins live here (CODEGEN_SETUP_SOURCES "src/<game>_mods.c"). Leaving this
 # out ships a CMakeLists that references a file the zip does not contain, so
@@ -84,11 +92,13 @@ exec bash "${PACKAGER}" \
   --artifact "${ARTIFACT_TAG}" \
   --zip-prefix wwf-war-zone \
   --exe-name wwf_war_zone \
+  --omit-openbios \
   --display-name "WWF War Zone" \
   --recompiler-build "${RECOMPILER_BUILD}" \
   --version-env RELEASE_VERSION \
   --disc-hint "WWF War Zone owned disc" \
   --bios-hint "your own SCPH-1001 (USA) BIOS dump (524288 bytes; SHA-256 71af94d1e47a68c11e8fdb9f8368040601514a42a5a399cda48c7d3bff1e99d3)" \
+  --runtime-dir mods \
   --project-file project-manifest.toml \
   --project-file disc_set.json \
   --project-dir identity \

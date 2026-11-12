@@ -84,3 +84,5 @@ starvation_dump.jsonl
 
 !/disc_set.json
 /.local-context/
+# Local release-gate receipts (regenerate per run; never ship)
+/_gate/
